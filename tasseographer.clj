@@ -1,3 +1,5 @@
+#!/usr/local/bin/planck
+
 (ns tasseographer.core
   (:require [planck.core    :refer [slurp]]
             [planck.shell   :refer [sh]]
