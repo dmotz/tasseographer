@@ -90,5 +90,5 @@
         (reduce (partial find-matches trie) [])
         (map (partial map hex->ascii))
         (map (partial apply str))
-        (map prn)
+        (map println)
         dorun)])
