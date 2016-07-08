@@ -80,20 +80,28 @@
         (->>
           (slurp "/usr/share/dict/words")
           split-lines
-          (filter hex?)
-          (filter long?)
-          (map (partial map ascii->hex))
-          (reduce add-to-trie {}))
+          (transduce
+            (comp
+              (filter hex?)
+              (filter long?)
+              (map (partial map ascii->hex)))
+            add-to-trie
+            {}))
 
         hashes
         (->>
           (sh "git" "log" \.)
           :out
           split-lines
-          (filter #(.startsWith % "commit "))
-          (map (partial drop 7))
-          (reduce (partial find-matches trie) [])
-          (map (partial map hex->ascii))
-          (map (partial apply str))
-          (map println)
-          dorun)]))
+          (transduce
+            (comp
+              (filter #(.startsWith % "commit "))
+              (map (partial drop 7)))
+            (partial find-matches trie)
+            [])
+          (into
+            []
+            (comp
+             (map (partial map hex->ascii))
+             (map (partial apply str))
+             (map println))))]))
