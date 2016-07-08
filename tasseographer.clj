@@ -1,9 +1,10 @@
 #!/usr/local/bin/planck
 
 (ns tasseographer.core
-  (:require [planck.core    :refer [slurp]]
+  (:require [planck.core    :refer [slurp *command-line-args*]]
             [planck.shell   :refer [sh]]
-            [clojure.string :refer [split-lines]]))
+            [clojure.string :refer [split-lines]])
+  (:require-macros [planck.shell :refer [with-sh-dir]]))
 
 
 (def min-len 3)
@@ -68,27 +69,31 @@
         (let [frag (subvec hashv start end)]
           (if (in-trie? trie frag)
             (recur start (inc end) matches frag)
-            (recur end (+ end min-len) (if cand (conj matches cand) matches) nil)))))))
+            (recur
+              end
+              (+ end min-len)
+              (if cand (conj matches cand) matches) nil)))))))
 
 
-(let [trie
-      (->>
-        (slurp "/usr/share/dict/words")
-        split-lines
-        (filter hex?)
-        (filter long?)
-        (map (partial map ascii->hex))
-        (reduce add-to-trie {}))
+(with-sh-dir (or (first *command-line-args*) \.)
+  (let [trie
+        (->>
+          (slurp "/usr/share/dict/words")
+          split-lines
+          (filter hex?)
+          (filter long?)
+          (map (partial map ascii->hex))
+          (reduce add-to-trie {}))
 
-      hashes
-      (->>
-        (sh "git" "log" \.)
-        :out
-        split-lines
-        (filter #(.startsWith % "commit "))
-        (map (partial drop 7))
-        (reduce (partial find-matches trie) [])
-        (map (partial map hex->ascii))
-        (map (partial apply str))
-        (map println)
-        dorun)])
+        hashes
+        (->>
+          (sh "git" "log" \.)
+          :out
+          split-lines
+          (filter #(.startsWith % "commit "))
+          (map (partial drop 7))
+          (reduce (partial find-matches trie) [])
+          (map (partial map hex->ascii))
+          (map (partial apply str))
+          (map println)
+          dorun)]))
