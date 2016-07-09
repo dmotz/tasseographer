@@ -7,8 +7,6 @@
   (:require-macros [planck.shell :refer [with-sh-dir]]))
 
 
-(def min-len 3)
-
 (def ascii->hex
   {"e" "e"
    "t" "7"
@@ -27,9 +25,9 @@
 
 (def hex-chars (set (keys ascii->hex)))
 
+(def hex? (partial every? hex-chars))
 
-(defn hex? [s]
-  (every? hex-chars s))
+(def min-len 3)
 
 
 (defn long? [s]
