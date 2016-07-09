@@ -63,14 +63,23 @@
            matches []
            cand    nil]
       (if (or (>= (+ start min-len) len) (> end len))
-        (concat coll matches)
+        (if (empty? matches)
+          coll
+          (concat coll [hash (flatten matches)]))
         (let [frag (subvec hashv start end)]
           (if (in-trie? trie frag)
             (recur start (inc end) matches frag)
             (recur
               end
               (+ end min-len)
-              (if cand (conj matches cand) matches) nil)))))))
+              (if cand
+                (conj
+                  (conj
+                    matches
+                    (repeat (- start (reduce + (map count matches))) " "))
+                  cand)
+                matches)
+              nil)))))))
 
 
 (with-sh-dir (or (first *command-line-args*) \.)
