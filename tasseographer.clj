@@ -93,28 +93,27 @@
               (filter long?)
               (map (partial map ascii->hex)))
             add-to-trie
-            {}))
+            {}))]
 
-        hashes
-        (->>
-          (sh "git" "log" \.)
-          :out
-          split-lines
-          (transduce
-            (comp
-              (filter #(.startsWith % "commit "))
-              (map (partial drop 7)))
-            (partial find-matches trie)
-            [])
-          (map
-            (fn [[hex matches]]
-              (println (apply str hex))
-              (print "\u001b[33m")
-              (println
-               (apply
-                 str
-                 (map
-                   #(if (= % " ") " " (hex->ascii %))
-                   matches)))
-              (println "\u001b[0m")))
-          dorun)]))
+    (->>
+      (sh "git" "log" \.)
+      :out
+      split-lines
+      (transduce
+        (comp
+          (filter #(.startsWith % "commit "))
+          (map (partial drop 7)))
+        (partial find-matches trie)
+        [])
+      (map
+        (fn [[hex matches]]
+          (println (apply str hex))
+          (print "\u001b[33m")
+          (println
+           (apply
+             str
+             (map
+               #(if (= % " ") " " (hex->ascii %))
+               matches)))
+          (println "\u001b[0m")))
+      dorun)))
