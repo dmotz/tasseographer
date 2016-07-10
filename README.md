@@ -1,8 +1,7 @@
 # Tasseographer
+#### Divine auspices from Git log hashes
+*Or, a taste of functional scripting in Clojure via [Planck](http://planck-repl.org/)*
 [Dan Motzenbecker](http://oxism.com/), MIT License
-
-### Divine auspices from Git log hashes
-#### *Or, a taste of functional scripting in Clojure via [Planck](http://planck-repl.org/)*
 
 Requires [Planck](http://planck-repl.org/) and [Git](https://git-scm.com/).
 
