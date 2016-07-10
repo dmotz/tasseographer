@@ -1,6 +1,6 @@
 # Tasseographer
 #### Divine auspices from Git log hashes
-*Or, a taste of functional scripting in Clojure via [Planck](http://planck-repl.org/)*
+##### *Or, a taste of functional scripting in Clojure via [Planck](http://planck-repl.org/)*
 [Dan Motzenbecker](http://oxism.com/), MIT License
 
 Requires [Planck](http://planck-repl.org/) and [Git](https://git-scm.com/).
