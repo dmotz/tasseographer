@@ -112,8 +112,6 @@
           (println
             (apply
               str
-              (map
-                #(if (= % " ") " " (hex->ascii %))
-                matches)))
+              (map #(if (= % " ") " " (hex->ascii %)) matches)))
           (println "\u001b[0m")))
       dorun)))
