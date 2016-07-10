@@ -110,10 +110,10 @@
           (println (apply str hex))
           (print "\u001b[33m")
           (println
-           (apply
-             str
-             (map
-               #(if (= % " ") " " (hex->ascii %))
-               matches)))
+            (apply
+              str
+              (map
+                #(if (= % " ") " " (hex->ascii %))
+                matches)))
           (println "\u001b[0m")))
       dorun)))
