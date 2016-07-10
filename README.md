@@ -23,6 +23,6 @@ $ tasseographer [dir]
 
 ### Example output:
 
-#![](https://dmotz.github.io/tasseographer/1.png)
-#![](https://dmotz.github.io/tasseographer/2.png)
-#![](https://dmotz.github.io/tasseographer/3.png)
+#![](https://dmotz.github.io/tasseographer/1.png =360x)
+#![](https://dmotz.github.io/tasseographer/2.png =360x)
+#![](https://dmotz.github.io/tasseographer/3.png =360x)
