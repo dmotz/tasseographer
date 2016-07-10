@@ -106,9 +106,17 @@
               (map (partial drop 7)))
             (partial find-matches trie)
             [])
-          (into
-            []
-            (comp
-             (map (partial map hex->ascii))
-             (map (partial apply str))
-             (map println))))]))
+          (map
+            (fn [[hex matches]]
+              (println (apply str hex))
+              (print "\u001b[33m")
+              (println
+               (apply
+                 str
+                 (map
+                   (fn [c]
+                     (if (= c " ") " " (hex->ascii c)))
+                   matches)))
+              (print "\u001b[0m")
+              (println)))
+          dorun)]))
