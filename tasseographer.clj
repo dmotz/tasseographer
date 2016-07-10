@@ -114,9 +114,7 @@
                (apply
                  str
                  (map
-                   (fn [c]
-                     (if (= c " ") " " (hex->ascii c)))
+                   #(if (= % " ") " " (hex->ascii %))
                    matches)))
-              (print "\u001b[0m")
-              (println)))
+              (println "\u001b[0m")))
           dorun)]))
