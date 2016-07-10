@@ -22,7 +22,6 @@ $ tasseographer [dir]
 ```
 
 ### Example output:
-
-#![](https://dmotz.github.io/tasseographer/1.png =360x)
-#![](https://dmotz.github.io/tasseographer/2.png =360x)
-#![](https://dmotz.github.io/tasseographer/3.png =360x)
+<img src="https://dmotz.github.io/tasseographer/1.png" width="360">
+<img src="https://dmotz.github.io/tasseographer/2.png" width="360">
+<img src="https://dmotz.github.io/tasseographer/2.png" width="360">
