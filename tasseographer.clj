@@ -65,7 +65,7 @@
       (if (or (>= (+ start min-len) len) (> end len))
         (if (empty? matches)
           coll
-          (concat coll [hash (flatten matches)]))
+          (conj coll [hash (flatten matches)]))
         (let [frag (subvec hashv start end)]
           (if (in-trie? trie frag)
             (recur start (inc end) matches frag)
