@@ -40,7 +40,7 @@
       trie
       x
       (if (seq xs)
-        (add-to-trie (if v v {}) xs)
+        (add-to-trie (or v {}) xs)
         (if v
           (assoc v :end true)
           {:end true})))))
@@ -85,7 +85,8 @@
 (with-sh-dir (or (first *command-line-args*) \.)
   (let [trie
         (->>
-          (slurp "/usr/share/dict/words")
+          "/usr/share/dict/words"
+          slurp
           split-lines
           (transduce
             (comp
