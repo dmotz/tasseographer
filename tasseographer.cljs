@@ -1,4 +1,4 @@
-#!/usr/local/bin/planck
+#!/usr/bin/env planck
 
 (ns tasseographer.core
   (:require [planck.core    :refer [slurp *command-line-args*]]
