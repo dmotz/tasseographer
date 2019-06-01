@@ -1,8 +1,12 @@
 # Tasseographer
+
 #### Divine auspices from Git log hashes
-##### *Or, a taste of functional scripting in Clojure via [Planck](http://planck-repl.org/)*
+
+##### _Or, a taste of functional scripting in Clojure via [Planck](http://planck-repl.org/)_
+
 [Dan Motzenbecker](http://oxism.com/), MIT License
-***
+
+---
 
 Requires [Planck](http://planck-repl.org/) and [Git](https://git-scm.com/).
 
@@ -12,13 +16,12 @@ complex Lisp augury.
 Tasseographer scours commit log hashes and cross references words in
 `/usr/share/dict/words`.
 
-
 ### Usage:
 
 Target any Git repository:
 
-```
-$ tasseographer [dir]
+```sh
+$ tasseographer.cljs [dir]
 ```
 
 ### Example output:
